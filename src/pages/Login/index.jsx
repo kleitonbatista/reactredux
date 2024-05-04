@@ -14,7 +14,7 @@ export function Login() {
   function handleLogin(e){
     e.preventDefault()
       if(email === '' || name === ''){
-        alert("preencha os dados")
+        alert("Preencha os dados")
         return 
       }
 
