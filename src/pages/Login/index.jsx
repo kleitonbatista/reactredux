@@ -1,16 +1,25 @@
 import { useState } from 'react'; 
 import styles from './login.module.css'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { criarUsuario } from '../../redux/user/slice';
 
 export function Login() {
+  const dispatch = useDispatch()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-
+  const navigate = useNavigate()
+  
   function handleLogin(e){
     e.preventDefault()
-    
-    console.log(name, email)
+      if(email === '' || name === ''){
+        alert("preencha os dados")
+        return 
+      }
+
+    dispatch(criarUsuario({name: name, email : email, address: email.toLocaleUpperCase()}))
+    navigate("/painel")
   }
 
   return (
